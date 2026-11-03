@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Latihan JavaScript</title>
+  <style>
+    body { background: #f4f6fb; color: #111; font-family: Arial, sans-serif; margin: 0; padding: 24px; }
+    h1 { text-align: center; }
+    h2 { border-bottom: 2px solid #ccd; padding-bottom: 6px; margin-top: 36px; }
+    .grid { display: flex; flex-wrap: wrap; gap: 16px; }
+    .card { background: white; border-top: 4px solid #1a3fd6; border-radius: 6px; padding: 12px 16px; flex: 1 1 260px; box-shadow: 0 1px 4px rgba(0,0,0,.15); }
+    .card h3 { margin: 0 0 4px; color: #1a3fd6; font-size: 16px; }
+    .card p { margin: 0 0 8px; font-size: 13px; color: #444; }
+    pre { background: #eef1fa; border: 1px dashed #99a; border-radius: 4px; padding: 10px; margin: 0; font-size: 16px; min-height: 40px; overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <h1>Latihan JavaScript</h1>
+
+  <h2>Latihan Percabangan</h2>
+  <div class="grid">
+    <div class="card"><h3>Soal 1: Sistem Penilaian Sederhana</h3><p>Jika nilai &gt;= 75 cetak "Lulus", selain itu cetak "Remedial".</p><pre id="perc1"></pre></div>
+    <div class="card"><h3>Soal 2: Konversi Kode Peran (Role)</h3><p>Pakai switch: "A" = Admin, "U" = User, selain itu = Guest.</p><pre id="perc2"></pre></div>
+  </div>
+
+  <h2>Latihan Perulangan</h2>
+  <div class="grid">
+    <div class="card"><h3>Soal 1: Cetak Angka 1 hingga 5</h3><p>Pakai for loop.</p><pre id="perul1"></pre></div>
+    <div class="card"><h3>Soal 2: Hitung Mundur (Countdown)</h3><p>Pakai while loop dari 3 hingga 1, lalu cetak "Start!".</p><pre id="perul2"></pre></div>
+  </div>
+
+  <h2>Latihan Function &amp; Logika</h2>
+  <div class="grid">
+    <div class="card"><h3>Soal 1: FizzBuzz</h3><p>Kelipatan 15 "FizzBuzz", kelipatan 3 "Fizz", kelipatan 5 "Buzz".</p><pre id="func1"></pre></div>
+    <div class="card"><h3>Soal 2: Cek Genap &amp; Ganjil</h3><p>Fungsi untuk mengecek angka genap atau ganjil.</p><pre id="func2"></pre></div>
+    <div class="card"><h3>Soal 3: Balik String</h3><p>Fungsi untuk membalik urutan karakter string.</p><pre id="func3"></pre></div>
+  </div>
+
+  <h2>Latihan Soal (Pola)</h2>
+  <div class="grid">
+    <div class="card"><h3>Soal 1: Segitiga</h3><pre id="pola1"></pre></div>
+    <div class="card"><h3>Soal 2: Persegi panjang</h3><pre id="pola2"></pre></div>
+    <div class="card"><h3>Soal 3: Persegi panjang kosong</h3><pre id="pola3"></pre></div>
+    <div class="card"><h3>Soal 4: Segitiga sama sisi</h3><pre id="pola4"></pre></div>
+    <div class="card"><h3>Soal 5: Segitiga sama sisi 2</h3><pre id="pola5"></pre></div>
+    <div class="card"><h3>Soal 6: Belah ketupat</h3><pre id="pola6"></pre></div>
+    <div class="card"><h3>Soal 7: Segitiga jam pasir</h3><pre id="pola7"></pre></div>
+    <div class="card"><h3>Soal 8: Segitiga kosong</h3><pre id="pola8"></pre></div>
+  </div>
+
+  <script>
+    // cetak(id, teks): tulis ke kotak hasil di halaman + ke Console
+    function cetak(id, teks) {
+      console.log(teks);
+      document.getElementById(id).textContent += teks + "\n";
+    }
+
+    // ===== PERCABANGAN =====
+    // Soal 1: Sistem Penilaian Sederhana
+    function cekNilai(nilai) {
+      if (nilai >= 75) cetak("perc1", "Lulus");
+      else cetak("perc1", "Remedial");
+    }
+    cekNilai(80);
+    cekNilai(60);
+
+    // Soal 2: Konversi Kode Peran (Role)
+    function cekRole(kode) {
+      switch (kode) {
+        case "A": cetak("perc2", "Admin"); break;
+        case "U": cetak("perc2", "User"); break;
+        default: cetak("perc2", "Guest");
+      }
+    }
+    cekRole("A");
+    cekRole("U");
+    cekRole("X");
+
+    // ===== PERULANGAN =====
+    // Soal 1: Angka 1 hingga 5 (for)
+    for (let i = 1; i <= 5; i++) {
+      cetak("perul1", i);
+    }
+
+    // Soal 2: Hitung mundur (while)
+    let hitung = 3;
+    while (hitung >= 1) {
+      cetak("perul2", hitung);
+      hitung--;
+    }
+    cetak("perul2", "Start!");
+
+    // ===== FUNCTION & LOGIKA =====
+    // Soal 1: FizzBuzz (1 sampai 15)
+    for (let i = 1; i <= 15; i++) {
+      if (i % 15 === 0) cetak("func1", "FizzBuzz");
+      else if (i % 3 === 0) cetak("func1", "Fizz");
+      else if (i % 5 === 0) cetak("func1", "Buzz");
+      else cetak("func1", i);
+    }
+
+    // Soal 2: Cek Genap & Ganjil
+    function genapGanjil(n) {
+      if (n % 2 === 0) return n + " adalah genap";
+      return n + " adalah ganjil";
+    }
+    cetak("func2", genapGanjil(4));
+    cetak("func2", genapGanjil(7));
+
+    // Soal 3: Balik String
+    function balik(teks) {
+      let hasil = "";
+      for (let i = teks.length - 1; i >= 0; i--) {
+        hasil += teks[i];
+      }
+      return hasil;
+    }
+    cetak("func3", balik("Javascript"));
+
+    // ===== POLA =====
+    // Soal 1: Segitiga
+    for (let i = 1; i <= 4; i++) cetak("pola1", "*".repeat(i));
+
+    // Soal 2: Persegi panjang
+    for (let i = 1; i <= 4; i++) cetak("pola2", "*".repeat(8));
+
+    // Soal 3: Persegi panjang kosong
+    for (let i = 1; i <= 5; i++) {
+      if (i === 1 || i === 5) cetak("pola3", "*".repeat(8));
+      else cetak("pola3", "*" + " ".repeat(6) + "*");
+    }
+
+    // Soal 4: Segitiga sama sisi (1, 22, 333, 4444)
+    for (let i = 1; i <= 4; i++) cetak("pola4", String(i).repeat(i));
+
+    // Soal 5: Segitiga sama sisi 2 (1, 23, 456, 78910)
+    let angka = 1;
+    for (let i = 1; i <= 4; i++) {
+      let baris = "";
+      for (let j = 1; j <= i; j++) {
+        baris += angka;
+        angka++;
+      }
+      cetak("pola5", baris);
+    }
+
+    // Soal 6: Belah ketupat
+    for (let i = 1; i <= 4; i++) cetak("pola6", " ".repeat(4 - i) + "*".repeat(2 * i - 1));
+    for (let i = 3; i >= 1; i--) cetak("pola6", " ".repeat(4 - i) + "*".repeat(2 * i - 1));
+
+    // Soal 7: Segitiga jam pasir
+    for (let i = 4; i >= 1; i--) cetak("pola7", " ".repeat(4 - i) + "*".repeat(2 * i - 1));
+    for (let i = 2; i <= 4; i++) cetak("pola7", " ".repeat(4 - i) + "*".repeat(2 * i - 1));
+
+    // Soal 8: Segitiga kosong
+    for (let i = 1; i <= 5; i++) {
+      if (i === 1) cetak("pola8", " ".repeat(4) + "*");
+      else if (i === 5) cetak("pola8", "*".repeat(9));
+      else cetak("pola8", " ".repeat(5 - i) + "*" + " ".repeat(2 * i - 3) + "*");
+    }
+  </script>
+</body>
+</html>
